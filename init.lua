@@ -8,6 +8,9 @@ MIZ.Sound                 = {
 MIZ.AirCombat             = {
   SpawnedGroup = {},
 }
+MIZ.AirStrike             = {
+  InertGroupStatus = {},
+}
 MIZ.MissionCommands       = {}
 MIZ.NextAirCombatTargetId = 10000
 
