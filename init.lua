@@ -5,7 +5,9 @@ MIZ.Sound                 = {
   Bell = "bell.ogg",
   Dead = "dead.ogg",
 }
-MIZ.AirCombat             = {}
+MIZ.AirCombat             = {
+  SpawnedGroup = {},
+}
 MIZ.MissionCommands       = {}
 MIZ.NextAirCombatTargetId = 10000
 

@@ -67,7 +67,24 @@ do
     )
   end
 
-  function MIZ.AirCombat.StartOacmSet(dataSet)
+  local function addToSpawnedGroupList(targetGroup, userList)
+    MIZ.AirCombat.SpawnedGroup[tostring(timer.getTime())] = {
+      targetGroup = targetGroup,
+      userList = userList,
+    }
+  end
+
+  MIZ.AirCombat.Reset = function()
+    for key, data in pairs(MIZ.AirCombat.SpawnedGroup) do
+      data.targetGroup:destroy();
+      for _, user in pairs(data.userList) do
+        MIZ.Common:OutMessageForUnit(user, "Air Combat Reset", MIZ.Sound.Beep)
+      end
+      MIZ.AirCombat.SpawnedGroup[key] = nil
+    end
+  end
+
+  MIZ.AirCombat.StartOacmSet = function(dataSet)
     local entityData = MIZ:DeepCopy(MIZ.Common:GetGroupData(dataSet.targetName))
     local userGroupStatus = MIZ.Common:GetUserGroupStatus(dataSet.groupName)
     
@@ -90,19 +107,20 @@ do
     local targetController = targetGroup:getController()
     setOption(targetController)
 
-    local userFriends = getNearFriends(userGroupStatus.coordinate); for index, friend in ipairs(userFriends) do
+    local userList = getNearFriends(userGroupStatus.coordinate); for index, user in ipairs(userList) do
       pushTask(
         targetController,
         {
           id     = "AttackUnit",
           params = {
-            unitId = friend:getID(),
+            unitId = user:getID(),
           }
         },
         index + 1
       )
-      MIZ.Common:OutTextForUnit(friend, "Air Combat Start")
-      MIZ.Common:OutSoundForUnit(friend, MIZ.Sound.Beep)
+      MIZ.Common:OutMessageForUnit(user, "Air Combat Start", MIZ.Sound.Beep)
     end
+
+    addToSpawnedGroupList(targetGroup, userList)
   end
 end

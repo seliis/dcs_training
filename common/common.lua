@@ -64,15 +64,13 @@ function MIZ.Common:GetUserGroupStatus(groupName)
   }
 end
 
-function MIZ.Common:OutTextForUnit(unit, text, displayTime, clearview)
+function MIZ.Common:OutMessageForUnit(unit, text, sound, displayTime, clearview)
+  local id = unit:getID()
   trigger.action.outTextForUnit(
-    unit:getID(),
+    id,
     text,
     displayTime or 10,
     clearview or false
   )
-end
-
-function MIZ.Common:OutSoundForUnit(unit, sound)
-  trigger.action.outSoundForUnit(unit:getID(), sound)
+  if sound then trigger.action.outSoundForUnit(id, sound) end
 end
