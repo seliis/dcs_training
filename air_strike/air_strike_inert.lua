@@ -42,7 +42,7 @@ do
     )
   end
 
-  function MIZ.AirStrike:prepareInertTarget()
+  function MIZ.AirStrike:PrepareInertTarget()
     for _, unit in ipairs(inertGroup:getUnits()) do
       MIZ.AirStrike.InertGroupStatus[unit:getName()] = false
     end
@@ -53,7 +53,7 @@ do
     setOff(inertGroupController)
   end
 
-  MIZ.AirStrike.resetInertTarget = function()
+  MIZ.AirStrike.ResetInertTarget = function()
     for inertUnitName, inertUnitStatus in pairs(MIZ.AirStrike.InertGroupStatus) do
       if inertUnitStatus == true then
         MIZ.AirStrike.InertGroupStatus[inertUnitName] = false

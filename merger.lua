@@ -3,6 +3,7 @@ do
 
   local mergeOrder = {
     "/init.lua",
+    "/event/event.lua",
     "/common/common.lua",
     "/air_combat/air_combat.lua",
     "/air_strike/air_strike_inert.lua",

@@ -1,4 +1,5 @@
 MIZ                       = {}
+MIZ.Event                 = {}
 MIZ.Common                = {}
 MIZ.Sound                 = {
   Beep = "beep.ogg",
@@ -9,7 +10,8 @@ MIZ.AirCombat             = {
   SpawnedGroup = {},
 }
 MIZ.AirStrike             = {
-  InertGroupStatus = {},
+  InertGroupStatus  = {},
+  MovingGroupStatus = {},
 }
 MIZ.MissionCommands       = {}
 MIZ.NextAirCombatTargetId = 10000

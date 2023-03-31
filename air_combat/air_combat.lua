@@ -84,7 +84,7 @@ do
     end
   end
 
-  MIZ.AirCombat.StartOacmSet = function(dataSet)
+  MIZ.AirCombat.MakeSet = function(dataSet)
     local entityData = MIZ:DeepCopy(MIZ.Common:GetGroupData(dataSet.targetName))
     local userGroupStatus = MIZ.Common:GetUserGroupStatus(dataSet.groupName)
     
@@ -96,8 +96,8 @@ do
         userPoint    = userGroupStatus.coordinate,
         targetPoint  = MIZ.Common:MutateCoordinate(
           userGroupStatus.coordinate,
-          27780,
-          userGroupStatus.heading
+          dataSet.targetDistance,
+          userGroupStatus.heading + dataSet.targetDirection
         ),
       })
     }
